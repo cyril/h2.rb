@@ -2,8 +2,8 @@
 
 require "digest/sha2"
 
-# H2 module.
-module H2
+# H256 module.
+module H256
   # Builder class.
   class Builder
     attr_reader :secret

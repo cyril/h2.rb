@@ -16,7 +16,7 @@ Fix :MySecretSalt1 do
   end
 end
 
-Fix[:MySecretSalt1].against { H2::Builder.new("my-secret") }
+Fix[:MySecretSalt1].against { H256::Builder.new("my-secret") }
 
 Fix :MySecretSalt2 do
   on :call, nil do
@@ -32,4 +32,4 @@ Fix :MySecretSalt2 do
   end
 end
 
-Fix[:MySecretSalt2].against { H2::Builder.new(nil) }
+Fix[:MySecretSalt2].against { H256::Builder.new(nil) }

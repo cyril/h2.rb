@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative File.join("..", "lib", "h2")
+require_relative File.join("..", "lib", "h256")
 
-CONF_PATH = File.join(File.expand_path("~"), ".h2")
+CONF_PATH = File.join(File.expand_path("~"), ".h256")
 
 unless File.exist?(CONF_PATH)
   print "Creating #{CONF_PATH} file... "
@@ -22,7 +22,7 @@ secret  = File.open(CONF_PATH)
               .fetch(0)
               .chomp
 
-builder = H2::Builder.new(secret)
+builder = H256::Builder.new(secret)
 result  = builder.call(ARGV[0])
 
 puts result

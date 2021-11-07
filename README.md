@@ -1,16 +1,16 @@
-# H2.rb
+# H256.rb
 
 One-way SHA256 function with salt.
 
 ## Installation
 
 ```sh
-gem install h2
+gem install h256
 ```
 
 ## Configuration
 
-**H2** reads its configuration from the `~/.h2` file at initialization.
+**H256** reads its configuration from the `~/.h256` file at initialization.
 This file, which should be readable by its owner only, have the salt value.
 
 ## Examples
@@ -18,17 +18,17 @@ This file, which should be readable by its owner only, have the salt value.
 Generate a digest from the system:
 
 ```sh
-echo "my-secret" > ~/.h2
+echo "my-secret" > ~/.h256
 ```
 
 ```sh
-h2 p@ssw0rd
+h256 p@ssw0rd
 ```
 
 > f8ab042dd6f0ee03347b6950b270ac91fd5a95b117825f4cb5782b9af62421a3
 
 ```sh
-h2 シークレット
+h256 シークレット
 ```
 
 > 35a36f9c6246596cf353d0e545244a650404475ffdfe589b5ebae084c80159b5
@@ -36,9 +36,9 @@ h2 シークレット
 Same operations, with Ruby:
 
 ```ruby
-require "h2"
+require "h256"
 
-builder = H2::Builder.new("my-secret")
+builder = H256::Builder.new("my-secret")
 
 builder.call("p@ssw0rd") # => "f8ab042dd6f0ee03347b6950b270ac91fd5a95b117825f4cb5782b9af62421a3"
 builder.call("シークレット") # => "35a36f9c6246596cf353d0e545244a650404475ffdfe589b5ebae084c80159b5"

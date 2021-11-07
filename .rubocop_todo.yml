@@ -11,4 +11,4 @@
 # Include: **/*.gemspec
 Gemspec/RequiredRubyVersion:
   Exclude:
-    - 'h2.gemspec'
+    - 'h256.gemspec'

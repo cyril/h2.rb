@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    h2 (0.1.0)
+    h256 (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -65,7 +65,7 @@ PLATFORMS
 DEPENDENCIES
   bundler
   fix (~> 1.0.0.beta8)
-  h2!
+  h256!
   rake
   rubocop-md
   rubocop-performance
