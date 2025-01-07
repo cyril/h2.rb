@@ -5,21 +5,17 @@ Gem::Specification.new do |spec|
   spec.version      = File.read("VERSION.semver")
   spec.author       = "Cyril Kato"
   spec.email        = "contact@cyril.email"
-  spec.homepage     = "https://github.com/cyril/h256.rb"
   spec.summary      = "One-way SHA256 function with salt."
-  spec.description  = spec.summary
+
+  spec.description  = <<~DESC
+    H256 reads its configuration from the ~/.h256 file at initialization. This file, which should be readable by its owner only, have the salt value.
+  DESC
+
+  spec.homepage     = "https://github.com/cyril/h256.rb"
   spec.license      = "MIT"
   spec.files        = Dir["LICENSE.md", "README.md", "lib/**/*", "bin/h256"]
   spec.executables  = ["h256"]
-  spec.required_ruby_version = ::Gem::Requirement.new(">= 3.0")
 
-  spec.add_development_dependency "bundler"
-  spec.add_development_dependency "fix", "~> 1.0.0.beta8"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "rubocop-md"
-  spec.add_development_dependency "rubocop-performance"
-  spec.add_development_dependency "rubocop-rake"
-  spec.add_development_dependency "rubocop-thread_safety"
-  spec.add_development_dependency "simplecov"
-  spec.add_development_dependency "yard"
+  spec.required_ruby_version = ">= 3.1.0"
+  spec.metadata["rubygems_mfa_required"] = "true"
 end

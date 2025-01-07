@@ -1,4 +1,14 @@
-inherit_from: .rubocop_todo.yml
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.1
+
+  Exclude:
+    - '**/*.md'
+    - '**/*.markdown'
+    - 'benchmark/**/*'
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'vendor/**/*'
 
 require:
   - rubocop-md
@@ -6,15 +16,12 @@ require:
   - rubocop-rake
   - rubocop-thread_safety
 
-AllCops:
-  NewCops: enable
-
-  Exclude:
-    - test.rb
-
-  TargetRubyVersion: 3.0
-
 Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
   EnforcedStyle: double_quotes
 
 # We do not need to support Ruby 1.9, so this is good to use.
@@ -29,6 +36,28 @@ Layout/HashAlignment:
 Layout/LineLength:
   Exclude:
     - README.md
+    - benchmark/**/*
 
-Lint/RequireRelativeSelfPath:
+Metrics/BlockLength:
+  Exclude:
+    - examples/**/*
+    - fix.gemspec
+
+Metrics/ParameterLists:
+  Max: 6
+
+Naming/FileName:
+  Exclude:
+    - CODE_OF_CONDUCT.md
+    - LICENSE.md
+    - README.md
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - README.md
+
+Naming/BlockForwarding:
+  Enabled: false
+
+Style/ArgumentsForwarding:
   Enabled: false

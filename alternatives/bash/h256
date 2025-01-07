@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+# H256 Secure Hash Generator
+# Usage: h256 [value]
+# Example: ./h256 "value-to-hash"
+
+# Exit on errors and unset variables
+set -euo pipefail
+
+# Path to the configuration file
+CONF_PATH="${HOME}/.h256"
+
+# Ensure the configuration file exists with appropriate permissions
+initialize_conf() {
+    if [[ ! -f "$CONF_PATH" ]]; then
+        echo "Creating $CONF_PATH file... "
+        echo "secret" > "$CONF_PATH"
+        chmod 600 "$CONF_PATH"
+        echo "Done."
+    fi
+}
+
+# Read the secret from the configuration file
+read_secret() {
+    if [[ ! -f "$CONF_PATH" ]]; then
+        echo "Error: Configuration file not found." >&2
+        exit 1
+    fi
+
+    # Read the first line of the file and trim whitespace
+    local secret
+    secret=$(head -n 1 "$CONF_PATH" | tr -d '[:space:]')
+    echo "$secret"
+}
+
+# Generate a SHA-256 hash
+generate_hash() {
+    local secret="$1"
+    local value="$2"
+
+    # Generate and print the hash
+    printf "%s++%s" "$value" "$secret" | openssl dgst -sha256 | awk '{print $2}'
+}
+
+# Main function
+main() {
+    # Use an empty string as the value if no argument is provided
+    local value="${1:-}"
+
+    # Initialize configuration file if needed
+    initialize_conf
+
+    # Read the secret
+    local secret
+    secret=$(read_secret)
+
+    # Generate and output the hash
+    generate_hash "$secret" "$value"
+}
+
+# Script entry point
+main "$@"
